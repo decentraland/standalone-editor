@@ -1,0 +1,17 @@
+{
+  "name": "dcl-editor",
+  "version": "4.6.0",
+  "description": "A foundation for scalable desktop apps",
+  "license": "MIT",
+  "author": {
+    "name": "DCL",
+    "url": "https://github.com/decentraland/editor-standalone"
+  },
+  "main": "./dist/main/main.js",
+  "scripts": {
+    "rebuild": "node -r ts-node/register ../../.build/scripts/electron-rebuild.js",
+    "postinstall": "npm run rebuild && npm run link-modules",
+    "link-modules": "node -r ts-node/register ../../.build/scripts/link-modules.ts"
+  },
+  "dependencies": {}
+}
