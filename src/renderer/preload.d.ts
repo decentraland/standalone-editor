@@ -1,10 +1,10 @@
-import { WorkspaceApi } from '../main/preload/workspace';
+import { initRendererApi } from '../main/ipc/preload';
+
+type RendererApis = ReturnType<typeof initRendererApi>;
 
 declare global {
   // eslint-disable-next-line no-unused-vars
-  interface Window {
-    workspace: WorkspaceApi;
-  }
+  interface Window extends RendererApis {}
 }
 
 export {};

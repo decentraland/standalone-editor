@@ -1,14 +1,11 @@
 import { IpcMainInvokeEvent } from 'electron';
 
 import { isDCL } from '../modules/workspace';
-import { Channel, MessageType } from '../../shared/enums';
+import { MessageType } from '../../shared/enums';
 import { handleInvoke } from '../modules/ipc';
 
-export const channel: Channel = 'workspace';
-
 export function initWorkspace() {
-  function getWorkspace(_: IpcMainInvokeEvent, asd: number) {
-    console.log('getWorkspace', asd);
+  function getWorkspace(_: IpcMainInvokeEvent) {
     return {
       isDCL: isDCL(),
     };

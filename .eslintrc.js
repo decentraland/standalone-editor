@@ -12,8 +12,20 @@ module.exports = {
     'no-shadow': 'off',
     '@typescript-eslint/no-shadow': 'error',
     'no-unused-vars': 'off',
-    '@typescript-eslint/no-unused-vars': 'error',
+    '@typescript-eslint/no-unused-vars': [
+      'error',
+      {
+        args: 'all',
+        argsIgnorePattern: '^_',
+        caughtErrors: 'all',
+        caughtErrorsIgnorePattern: '^_',
+        destructuredArrayIgnorePattern: '^_',
+        varsIgnorePattern: '^_',
+        ignoreRestSiblings: true,
+      },
+    ],
     'import/prefer-default-export': 'off',
+    'no-restricted-syntax': ['off', "BinaryExpression[operator='of']"],
   },
   parserOptions: {
     ecmaVersion: 2022,

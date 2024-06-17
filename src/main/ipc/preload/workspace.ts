@@ -1,7 +1,7 @@
-import { contextBridge, ipcRenderer } from 'electron';
+import { ipcRenderer } from 'electron';
 
-import { MessageType } from '../../shared/enums';
-import { initWorkspace } from '../ipc/workspace';
+import { MessageType } from '../../../shared/enums';
+import { initWorkspace } from '../workspace';
 import { IpcHandlers } from './types';
 
 export function initWorkspaceApi() {
@@ -10,9 +10,5 @@ export function initWorkspaceApi() {
       return ipcRenderer.invoke(MessageType.GET_WORKSPACE, ...params);
     },
   };
-
-  contextBridge.exposeInMainWorld('workspace', workspaceApi);
   return workspaceApi;
 }
-
-export type WorkspaceApi = ReturnType<typeof initWorkspaceApi>;

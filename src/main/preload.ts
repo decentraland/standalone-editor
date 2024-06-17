@@ -1,3 +1,3 @@
-import { initRendererApi } from './preload/';
+import { initRendererApi } from './ipc/preload';
 
 initRendererApi();
