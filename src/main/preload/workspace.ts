@@ -1,18 +1,26 @@
-// Disable no-unused-vars, broken for spread args
-/* eslint no-unused-vars: off */
-import { contextBridge, ipcRenderer } from 'electron'
+import { contextBridge, ipcRenderer } from 'electron';
 
-import { getWorkspace } from '../main'
-import { MessageType } from '../../shared/messages'
+import { MessageType } from '../../shared/enums';
+import { initWorkspace } from '../ipc/workspace';
 
-export const channel = 'workspace'
+type InitWorkspace = ReturnType<typeof initWorkspace>;
 
-const workspace = {
-  getWorkspace(): Promise<ReturnType<typeof getWorkspace>> {
-    return ipcRenderer.invoke(MessageType.GET_WORKSPACE)
+type IgnoreEvent<T extends any[]> = T extends [any, ...infer Rest]
+  ? Rest
+  : never;
+
+type WorskpaceHandlers = {
+  [K in keyof InitWorkspace]: (
+    ...params: IgnoreEvent<Parameters<InitWorkspace[K]['handler']>>
+  ) => Promise<ReturnType<InitWorkspace[K]['handler']>>;
+};
+
+const workspace: WorskpaceHandlers = {
+  getWorkspace(...params) {
+    return ipcRenderer.invoke(MessageType.GET_WORKSPACE, ...params);
   },
-}
+};
 
-contextBridge.exposeInMainWorld('workspace', workspace)
+contextBridge.exposeInMainWorld('workspace', workspace);
 
-export type Workspace = typeof workspace
+export type Workspace = typeof workspace;

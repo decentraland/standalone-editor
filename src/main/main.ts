@@ -1,21 +1,10 @@
-/* eslint global-require: off, no-console: off, promise/always-return: off */
-
-/**
- * This module executes inside of electron's main process. You can start
- * electron renderer process from here and communicate with the other processes
- * through IPC.
- *
- * When running `npm run build` or `npm run build:main`, this file is compiled to
- * `./src/main.js` using webpack. This gives us some performance wins.
- */
 import path from 'path';
-import { app, BrowserWindow, shell, ipcMain } from 'electron';
+import { app, BrowserWindow, shell } from 'electron';
 import { autoUpdater } from 'electron-updater';
 import log from 'electron-log';
 import MenuBuilder from './menu';
 import { resolveHtmlPath } from './util';
-import { MessageType } from '../shared/messages';
-import { isDCL } from './modules/workspace';
+import { initIpc } from './ipc';
 
 class AppUpdater {
   constructor() {
@@ -26,14 +15,6 @@ class AppUpdater {
 }
 
 let mainWindow: BrowserWindow | null = null;
-
-export function getWorkspace() {
-  return {
-    isDCL: isDCL(),
-  }
-}
-
-ipcMain.handle(MessageType.GET_WORKSPACE, getWorkspace);
 
 if (process.env.NODE_ENV === 'production') {
   const sourceMapSupport = require('source-map-support');
@@ -131,6 +112,7 @@ app.on('window-all-closed', () => {
 app
   .whenReady()
   .then(() => {
+    initIpc();
     createWindow();
     app.on('activate', () => {
       // On macOS it's common to re-create a window in the app when the
