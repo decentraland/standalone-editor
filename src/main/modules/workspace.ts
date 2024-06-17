@@ -1,20 +1,20 @@
-import { app } from 'electron'
-import fs from 'fs'
-import path from 'path'
-import { Scene } from '@dcl/schemas'
-import { hasDependency } from './pkg'
+import { app } from 'electron';
+import fs from 'fs';
+import path from 'path';
+import { Scene } from '@dcl/schemas';
+import { hasDependency } from './pkg';
 
-let cwd: string = app.getPath('home') // set default workspace to user's home directory
+let cwd: string = app.getPath('home'); // set default workspace to user's home directory
 
 /**
  * Set the path to the extension's directory in the filesystem
  * @param path Path to the extension
  */
-export function setCwd(path: string) {
-  if (fs.statSync(path).isDirectory()) {
-    cwd = path
+export function setCwd(_path: string) {
+  if (fs.statSync(_path).isDirectory()) {
+    cwd = _path;
   }
-  throw new Error(`setCwd(): Invalid path provided ${path}`)
+  throw new Error(`setCwd(): Invalid path provided ${_path}`);
 }
 
 /**
@@ -22,7 +22,7 @@ export function setCwd(path: string) {
  * @returns The path to the workspace's current working directory
  */
 export function getCwd() {
-  return cwd
+  return cwd;
 }
 
 /**
@@ -70,9 +70,8 @@ export function hasNodeModules() {
     const nodeModulesPath = path.join(getCwd(), 'node_modules');
     if (fs.existsSync(nodeModulesPath)) {
       return true;
-    } else {
-      return false;
     }
+    return false;
   } catch (error) {
     return false;
   }

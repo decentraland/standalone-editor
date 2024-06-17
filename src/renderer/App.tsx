@@ -16,7 +16,7 @@ function Hello() {
 export default function App() {
   useEffect(() => {
     window.workspace
-      .getWorkspace('testing')
+      .getWorkspace(1123)
       .then((workspace) => {
         console.log(workspace);
         return 1;

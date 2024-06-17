@@ -2,25 +2,17 @@ import { contextBridge, ipcRenderer } from 'electron';
 
 import { MessageType } from '../../shared/enums';
 import { initWorkspace } from '../ipc/workspace';
+import { IpcHandlers } from './types';
 
-type InitWorkspace = ReturnType<typeof initWorkspace>;
+export function initWorkspaceApi() {
+  const workspaceApi: IpcHandlers<ReturnType<typeof initWorkspace>> = {
+    getWorkspace(...params) {
+      return ipcRenderer.invoke(MessageType.GET_WORKSPACE, ...params);
+    },
+  };
 
-type IgnoreEvent<T extends any[]> = T extends [any, ...infer Rest]
-  ? Rest
-  : never;
+  contextBridge.exposeInMainWorld('workspace', workspaceApi);
+  return workspaceApi;
+}
 
-type WorskpaceHandlers = {
-  [K in keyof InitWorkspace]: (
-    ...params: IgnoreEvent<Parameters<InitWorkspace[K]['handler']>>
-  ) => Promise<ReturnType<InitWorkspace[K]['handler']>>;
-};
-
-const workspace: WorskpaceHandlers = {
-  getWorkspace(...params) {
-    return ipcRenderer.invoke(MessageType.GET_WORKSPACE, ...params);
-  },
-};
-
-contextBridge.exposeInMainWorld('workspace', workspace);
-
-export type Workspace = typeof workspace;
+export type WorkspaceApi = ReturnType<typeof initWorkspaceApi>;

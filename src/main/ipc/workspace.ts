@@ -7,7 +7,7 @@ import { handleInvoke } from '../modules/ipc';
 export const channel: Channel = 'workspace';
 
 export function initWorkspace() {
-  function getWorkspace(_: IpcMainInvokeEvent, asd: string) {
+  function getWorkspace(_: IpcMainInvokeEvent, asd: number) {
     console.log('getWorkspace', asd);
     return {
       isDCL: isDCL(),

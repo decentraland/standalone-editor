@@ -1,2 +1,3 @@
-import './preload/ipc'
-import './preload/workspace'
+import { initRendererApi } from './preload/';
+
+initRendererApi();
