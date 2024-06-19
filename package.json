@@ -65,6 +65,8 @@
   },
   "dependencies": {
     "@dcl/schemas": "^11.9.1",
+    "@dcl/sdk": "^7.5.3",
+    "decentraland-ui": "^6.1.1",
     "electron-debug": "^3.2.0",
     "electron-log": "^4.4.8",
     "electron-updater": "^6.1.4",

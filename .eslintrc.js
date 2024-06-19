@@ -26,6 +26,7 @@ module.exports = {
     ],
     'import/prefer-default-export': 'off',
     'no-restricted-syntax': ['off', "BinaryExpression[operator='of']"],
+    'jsx-a11y/no-static-element-interactions': 'off',
   },
   parserOptions: {
     ecmaVersion: 2022,
