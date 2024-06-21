@@ -66,12 +66,17 @@
   "dependencies": {
     "@dcl/schemas": "^11.9.1",
     "@dcl/sdk": "^7.5.3",
+    "@reduxjs/toolkit": "^2.2.5",
     "decentraland-ui": "^6.1.1",
     "electron-debug": "^3.2.0",
     "electron-log": "^4.4.8",
     "electron-updater": "^6.1.4",
+    "flat": "^6.0.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-intl": "^6.6.8",
+    "react-redux": "^7.2.9",
+    "react-router": "^6.23.1",
     "react-router-dom": "^6.16.0"
   },
   "devDependencies": {
