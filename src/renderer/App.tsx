@@ -1,9 +1,18 @@
 import { useEffect } from 'react';
+import { Provider } from 'react-redux';
 import { MemoryRouter as Router, Routes, Route } from 'react-router-dom';
-import icon from '../../assets/icon.svg';
-import './App.css';
 
-function Hello() {
+import { store } from './modules/common/store';
+
+import icon from '../../assets/icon.svg';
+import { TranslationProvider } from './modules/dapps-translation-v2/TranslationProvider';
+import { fetchTranslations } from './modules/translation';
+import { locales } from './modules/translation/utils';
+
+import './App.css';
+import './themes';
+
+function Root() {
   return (
     <div>
       <div className="Hello">
@@ -13,22 +22,29 @@ function Hello() {
   );
 }
 
-export default function App() {
+export function App() {
   useEffect(() => {
     window.workspace
       .getWorkspace()
       .then((workspace) => {
-        console.log(workspace);
+        console.log('Testing ipc: ', workspace);
         return 1;
       })
       .catch(() => {});
   }, []);
 
   return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<Hello />} />
-      </Routes>
-    </Router>
+    <Provider store={store}>
+      <TranslationProvider
+        locales={locales}
+        fetchTranslations={fetchTranslations}
+      >
+        <Router>
+          <Routes>
+            <Route path="/" element={<Root />} />
+          </Routes>
+        </Router>
+      </TranslationProvider>
+    </Provider>
   );
 }

@@ -1,5 +1,6 @@
 import classNames from 'classnames';
 import { Badge } from 'decentraland-ui';
+import { t } from '../../modules/dapps-translation-v2/translation/utils';
 
 import { DeploymentStatus as Status } from '../../modules/deployment';
 

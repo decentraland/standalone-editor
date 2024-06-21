@@ -1,15 +1,16 @@
 import { useCallback, useEffect, useState } from 'react';
 import { Confirm, Button } from 'decentraland-ui';
+import { t } from '../../modules/dapps-translation-v2/translation/utils';
 
 import { DeploymentStatus } from '../DeploymentStatus';
 import { Icon } from '../Icon';
 import { OptionsDropdown } from '../OptionsDropdown';
 import { SDKTag } from '../SDKTag';
 import { getThumbnailUrl } from '../../modules/project';
+import { isRemoteURL } from '../../modules/media';
 
 import { Props } from './types';
 import './styles.css';
-import { isRemoteURL } from '../../modules/media';
 
 export function ProjectCard({
   project,

@@ -1,7 +1,6 @@
-// import { t } from 'decentraland-dapps/dist/modules/translation/utils'
-import { Icon, Loader, Popup } from 'decentraland-ui';
+import { Loader } from 'decentraland-ui';
 import { Props } from './types';
-import styles from './SDKTag.module.css';
+import styles from './styles.css';
 
 export function SDKTag({ scene }: Props) {
   if (!scene) {
@@ -11,20 +10,5 @@ export function SDKTag({ scene }: Props) {
       </span>
     );
   }
-
-  if (scene.sdk6) {
-    return (
-      <Popup
-        content={t('scenes_page.sdk6_support')}
-        trigger={
-          <span className={styles.container}>
-            <Icon name="exclamation triangle" />
-            SDK 6
-          </span>
-        }
-      />
-    );
-  }
-
   return <span className={styles.container}>SDK 7</span>;
 }

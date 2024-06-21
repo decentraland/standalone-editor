@@ -2,7 +2,7 @@ import { MouseEvent, KeyboardEvent, useCallback } from 'react';
 import classNames from 'classnames';
 
 import { Props } from './types';
-import './Icon.css';
+import './styles.css';
 import './sprite.css';
 
 const noop = (_: MouseEvent<HTMLElement> | KeyboardEvent<HTMLElement>) => {

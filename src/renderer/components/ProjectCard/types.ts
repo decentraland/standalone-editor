@@ -1,4 +1,3 @@
-// import { openModal } from 'decentraland-dapps/dist/modules/modal/actions';
 import { Scene } from '../../modules/scene';
 import { Project } from '../../modules/project';
 import { Deployment, DeploymentStatus } from '../../modules/deployment';
@@ -17,6 +16,6 @@ export type Props = {
   onClick?: (project: Project) => void;
   onDeleteProject: (project: Project) => void;
   onDuplicateProject: (project: Project) => void;
-  onOpenModal: (name: string, project: any) => void;
+  onOpenModal: (name: string, metadata: any) => any;
   onLoadProjectScene: (project: Project, type: PreviewType) => void;
 };
