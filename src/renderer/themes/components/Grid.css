@@ -1,0 +1,25 @@
+/* Reset grid */
+.ui.grid {
+  margin-top: 0px;
+  margin-bottom: 0px;
+  margin-left: 0px;
+  margin-right: 0px;
+}
+
+.ui.grid + .grid {
+  margin-top: 0px;
+}
+
+.ui.grid > .row {
+  padding-top: 0px;
+  padding-bottom: 0px;
+}
+
+.ui.grid > .column {
+  padding-top: 0px;
+  padding-bottom: 0px;
+}
+
+.ui.grid.fullscreen {
+  height: 100%;
+}

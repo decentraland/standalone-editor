@@ -80,7 +80,12 @@ const configuration: webpack.Configuration = {
       },
       {
         test: /\.s?css$/,
-        use: ['style-loader', 'css-loader', 'sass-loader'],
+        use: [
+          'style-loader',
+          'css-loader',
+          'sass-loader',
+          path.resolve('.build/configs/semantic-fix.js'), // hack. TODO: fix it in decentraland-ui...
+        ],
         exclude: /\.module\.s?(c|a)ss$/,
       },
       // Fonts

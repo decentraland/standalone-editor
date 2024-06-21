@@ -1,0 +1,53 @@
+/* -----------------------------
+    Form input
+ ----------------------------- */
+
+.ui.form .dcl.field.address.has-label .dcl.blockie {
+  top: 25px;
+}
+
+.ui.form .dcl.field .ui.input > input {
+  padding-bottom: 8px;
+}
+
+/* -----------------------------
+    Rounded input
+ ----------------------------- */
+
+.ui.form .dcl.field .ui.input.rounded > input,
+.dcl.field .ui.input.rounded > input {
+  border: 1px solid var(--gray);
+  border-radius: 6px;
+  font-size: 15px;
+  padding-bottom: 5px;
+  padding-left: 1em;
+}
+
+.ui.form .dcl.field .ui.input.rounded > input:focus,
+.dcl.field .ui.input.rounded > input:focus {
+  border: 1px solid var(--light-gray);
+}
+
+.ui.form .dcl.field.error .ui.input.rounded > input,
+.ui.form .dcl.field.error .ui.input.rounded > input:focus,
+.dcl.field.error .ui.input.rounded > input,
+.dcl.field.error .ui.input.rounded > input:focus {
+  border: 1px solid var(--error);
+}
+
+.dcl.field.address .ui.input.rounded + .dcl.blockie {
+  margin-right: 12px;
+}
+
+.dcl.field .ui.input.rounded ~ .message {
+  display: none;
+}
+
+.rounded-address .dui-address-field__address {
+  font-size: 15px;
+  bottom: 8px;
+}
+
+.dui-address-field__input--with-address.ui.icon.input.rounded input {
+  padding-right: 160px !important;
+}
