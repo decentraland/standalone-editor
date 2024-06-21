@@ -1,5 +1,7 @@
 import { useCallback, useEffect, useState } from 'react';
 import { Confirm, Button } from 'decentraland-ui';
+
+import { useSelector } from '../../modules/common/store';
 import { t } from '../../modules/dapps-translation-v2/translation/utils';
 
 import { DeploymentStatus } from '../DeploymentStatus';
@@ -9,23 +11,21 @@ import { SDKTag } from '../SDKTag';
 import { getThumbnailUrl } from '../../modules/project';
 import { isRemoteURL } from '../../modules/media';
 
+import { selectCard } from './selectors';
 import { Props } from './types';
 import './styles.css';
 
 export function ProjectCard({
   project,
-  type,
   onClick,
-  onLoadProjectScene,
   onDeleteProject,
   onDuplicateProject,
   onOpenModal,
-  parcels = 0,
-  items = 0,
-  isUploading,
-  hasError,
-  scene,
+  onLoadProjectScene,
 }: Props) {
+  const { parcels, scene, isUploading, hasError, type } = useSelector((state) =>
+    selectCard(state, project),
+  );
   const [isDeleting, setIsDeleting] = useState(false);
 
   useEffect(() => {
@@ -116,7 +116,6 @@ export function ProjectCard({
         <div className="description" title={project.description}>
           <Icon name="scene-parcel" />{' '}
           {t('public_page.parcel_count', { parcels })}
-          <Icon name="scene-object" /> {t('project_card.item_count', { items })}
         </div>
       </div>
     </>

@@ -4,20 +4,64 @@ import { MemoryRouter as Router, Routes, Route } from 'react-router-dom';
 
 import { store } from './modules/common/store';
 
-import icon from '../../assets/icon.svg';
 import { TranslationProvider } from './modules/dapps-translation-v2/TranslationProvider';
 import { fetchTranslations } from './modules/translation';
 import { locales } from './modules/translation/utils';
 
-import './App.css';
+import ProjectCard from './components/ProjectCard';
+import { Project, TemplateStatus } from './modules/project';
+
+// import './App.css';
 import './themes';
+
+const projects: Project[] = [
+  {
+    id: '1',
+    title: 'some-title',
+    description: 'some long long description',
+    thumbnail: '',
+    isPublic: true,
+    sceneId: 'some-scene-id',
+    ethAddress: null,
+    createdAt: new Date().toDateString(),
+    updatedAt: new Date().toDateString(),
+    layout: { rows: 5, cols: 5 },
+    isTemplate: false,
+    video: null,
+    templateStatus: TemplateStatus.ACTIVE,
+  },
+  {
+    id: '2',
+    title: 'some-title',
+    description: 'some long long description',
+    thumbnail: '',
+    isPublic: true,
+    sceneId: 'some-scene-id',
+    ethAddress: null,
+    createdAt: new Date().toDateString(),
+    updatedAt: new Date().toDateString(),
+    layout: { rows: 3, cols: 3 },
+    isTemplate: false,
+    video: null,
+    templateStatus: TemplateStatus.COMING_SOON,
+  },
+];
+
+const noop = () => undefined;
 
 function Root() {
   return (
-    <div>
-      <div className="Hello">
-        <img width="200" alt="icon" src={icon} />
-      </div>
+    <div className="CardList">
+      {projects.map((project) => (
+        <ProjectCard
+          key={project.id}
+          project={project}
+          onDeleteProject={noop}
+          onDuplicateProject={noop}
+          onOpenModal={noop}
+          onLoadProjectScene={noop}
+        />
+      ))}
     </div>
   );
 }

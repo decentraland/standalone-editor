@@ -1,18 +1,8 @@
-import { Scene } from '../../modules/scene';
-import { Project } from '../../modules/project';
-import { Deployment, DeploymentStatus } from '../../modules/deployment';
 import { PreviewType } from '../../modules/editor';
+import { Project } from '../../modules/project';
 
 export type Props = {
-  parcels?: number;
-  items?: number;
   project: Project;
-  isUploading: boolean;
-  hasError: boolean;
-  deploymentStatus: DeploymentStatus;
-  deployments: Deployment[];
-  type: PreviewType;
-  scene: Scene;
   onClick?: (project: Project) => void;
   onDeleteProject: (project: Project) => void;
   onDuplicateProject: (project: Project) => void;

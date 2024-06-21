@@ -1,5 +1,5 @@
-import { Media } from "./media";
-import { Scene } from "./scene";
+import { Media } from './media';
+import { Scene } from './scene';
 
 export type Layout = {
   rows: number;
