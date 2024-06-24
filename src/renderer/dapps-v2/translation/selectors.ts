@@ -1,4 +1,4 @@
-import { RootState } from '../../common/types';
+import { RootState } from '../../modules/common/types';
 import { Locale, TranslationKeys } from './types';
 import { getPreferredLocale } from './utils';
 

@@ -1,7 +1,7 @@
 import {
   createTranslationSlice,
   createTranslationFetcher,
-} from '../dapps-translation-v2/translation/slice';
+} from '../../dapps-v2/translation/slice';
 import * as languages from './languages';
 
 export const fetchTranslations = createTranslationFetcher({

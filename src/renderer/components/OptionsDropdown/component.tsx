@@ -4,18 +4,19 @@ import classnames from 'classnames';
 
 import { preventDefault } from '../../modules/event';
 import { Props } from './types';
-import styles from './styles.css';
+
+import './styles.css';
 
 function OptionsDropdown(props: Props) {
   const { options, className } = props;
-  const classes = [styles.OptionsDropdown];
+  const classes = ['OptionsDropdown'];
   if (className) {
     classes.push(className);
   }
 
   return (
     <Dropdown
-      className={classnames(styles.OptionsDropdown, className)}
+      className={classnames('OptionsDropdown', className)}
       direction="left"
       onClick={preventDefault()}
     >

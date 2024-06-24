@@ -4,14 +4,13 @@ import { MemoryRouter as Router, Routes, Route } from 'react-router-dom';
 
 import { store } from './modules/common/store';
 
-import { TranslationProvider } from './modules/dapps-translation-v2/TranslationProvider';
+import { TranslationProvider } from './dapps-v2/TranslationProvider';
 import { fetchTranslations } from './modules/translation';
 import { locales } from './modules/translation/utils';
 
 import ProjectCard from './components/ProjectCard';
 import { Project, TemplateStatus } from './modules/project';
 
-// import './App.css';
 import './themes';
 
 const projects: Project[] = [

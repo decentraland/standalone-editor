@@ -1,4 +1,4 @@
-import { TranslationState } from '../dapps-translation-v2/translation/types';
+import { TranslationState } from '../../dapps-v2/translation/types';
 
 export type RootState = {
   translation: TranslationState;

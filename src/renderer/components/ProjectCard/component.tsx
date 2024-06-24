@@ -2,7 +2,7 @@ import { useCallback, useEffect, useState } from 'react';
 import { Confirm, Button } from 'decentraland-ui';
 
 import { useSelector } from '../../modules/common/store';
-import { t } from '../../modules/dapps-translation-v2/translation/utils';
+import { t } from '../../dapps-v2/translation/utils';
 
 import { DeploymentStatus } from '../DeploymentStatus';
 import { Icon } from '../Icon';
