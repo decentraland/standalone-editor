@@ -16,7 +16,7 @@ function OptionsDropdown(props: Props) {
 
   return (
     <Dropdown
-      className={classnames('OptionsDropdown', className)}
+      className={classnames(...classes)}
       direction="left"
       onClick={preventDefault()}
     >

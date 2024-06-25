@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useState, CSSProperties } from 'react';
 import { Confirm, Button } from 'decentraland-ui';
 
 import { useSelector } from '../../modules/common/store';
@@ -59,7 +59,7 @@ export function ProjectCard({
     onOpenModal('ExportModal', { project });
   }, [project, onOpenModal]);
 
-  let style = {};
+  let style: CSSProperties = {};
   let classes = 'ProjectCard';
 
   let thumbnailUrl = getThumbnailUrl(project, scene);

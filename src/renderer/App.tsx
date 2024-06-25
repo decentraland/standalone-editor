@@ -8,10 +8,11 @@ import { TranslationProvider } from './dapps-v2/TranslationProvider';
 import { fetchTranslations } from './modules/translation';
 import { locales } from './modules/translation/utils';
 
-import ProjectCard from './components/ProjectCard';
+import { ScenesPage } from './components/ScenesPage';
 import { Project, TemplateStatus } from './modules/project';
 
 import './themes';
+import { SortBy } from './components/ScenesPage/types';
 
 const projects: Project[] = [
   {
@@ -51,16 +52,12 @@ const noop = () => undefined;
 function Root() {
   return (
     <div className="CardList">
-      {projects.map((project) => (
-        <ProjectCard
-          key={project.id}
-          project={project}
-          onDeleteProject={noop}
-          onDuplicateProject={noop}
-          onOpenModal={noop}
-          onLoadProjectScene={noop}
-        />
-      ))}
+      <ScenesPage
+        projects={projects}
+        sortBy={SortBy.NEWEST}
+        onOpenModal={noop}
+        onSort={noop}
+      />
     </div>
   );
 }

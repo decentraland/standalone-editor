@@ -1,4 +1,4 @@
-.OptionsDropdown:global(.ui.dropdown) {
+.OptionsDropdown.ui.dropdown {
   position: absolute;
   top: 5px;
   right: 10px;
@@ -6,19 +6,19 @@
   display: inline-block;
 }
 
-.OptionsDropdown:global(.ui.dropdown) > :global(.dropdown.icon):before {
+.OptionsDropdown.ui.dropdown > .dropdown.icon:before {
   content: '…';
   color: var(--shadows);
 }
 
-.OptionsDropdown:global(.ui.dropdown) > :global(.dropdown.icon) {
+.OptionsDropdown.ui.dropdown > .dropdown.icon {
   padding: 0 3px;
   line-height: 2px;
   font-size: 24px;
   height: 0.7em;
 }
 
-.OptionsDropdown :global(.dropdown.icon):hover {
+.OptionsDropdown .dropdown.icon:hover {
   background-color: var(--translusent-gray);
   border-radius: 4px;
 }
