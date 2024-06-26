@@ -13,7 +13,7 @@ import {
 
 import { t } from '../../dapps-v2/translation/utils';
 
-// import SceneCreationSelector from 'components/SceneCreationSelector';
+import { SceneCreationSelector } from '../SceneCreationSelector';
 import { ProjectCard } from '../ProjectCard';
 
 import { Props, SortBy } from './types';
@@ -113,7 +113,7 @@ export function ScenesPage({ projects, sortBy, onOpenModal, onSort }: Props) {
         <span className="no-scenes-description">
           {t('scenes_page.no_scenes.description', { a: NoScenesAnchor })}
         </span>
-        {/* <SceneCreationSelector /> */}
+        <SceneCreationSelector onOpenModal={handleOpenCreateModal} />
       </div>
     );
   };

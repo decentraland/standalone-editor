@@ -117,6 +117,13 @@ const configuration: webpack.Configuration = {
           'file-loader',
         ],
       },
+      {
+        test: /\.(mov|mp4|webp)$/,
+        loader: 'file-loader',
+        options: {
+          name: '[path][name].[ext]',
+        },
+      },
     ],
   },
   plugins: [
