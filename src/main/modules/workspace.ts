@@ -1,78 +1,103 @@
-import { app } from 'electron';
 import fs from 'fs';
 import path from 'path';
 import { Scene } from '@dcl/schemas';
+
+import { Project } from '../../shared/projects';
 import { hasDependency } from './pkg';
+import { getCwd } from './cwd';
+import { getRowsAndCols, parseCoords } from './scene';
 
-let cwd: string = app.getPath('home'); // set default workspace to user's home directory
-
-/**
- * Set the path to the extension's directory in the filesystem
- * @param path Path to the extension
- */
-export function setCwd(_path: string) {
-  if (fs.statSync(_path).isDirectory()) {
-    cwd = _path;
-  }
-  throw new Error(`setCwd(): Invalid path provided ${_path}`);
-}
-
-/**
- * Returns the path to the workspace's current working directory
- * @returns The path to the workspace's current working directory
- */
-export function getCwd() {
-  return cwd;
-}
+export type Workspace = {
+  projects: Project[];
+};
 
 /**
  * Get scene json
  */
-export function getScene() {
-  const sceneJsonPath = path.join(getCwd(), 'scene.json');
+export function getScene(_path: string): Scene {
+  const sceneJsonPath = path.join(_path, 'scene.json');
   const scene = fs.readFileSync(sceneJsonPath, 'utf8');
-  return JSON.parse(scene) as Scene & {
-    worldConfiguration?: {
-      name: string;
-    };
+  return JSON.parse(scene);
+}
+
+/**
+ * Returns whether or not the provided directory is a decentraland project or not
+ */
+export function isDCL(_path: string): boolean {
+  try {
+    getScene(_path);
+    return hasDependency(_path, '@dcl/sdk');
+  } catch (_) {
+    return false;
+  }
+}
+
+/**
+ * Returns whether or not the provided directory is empty or not
+ */
+export function isEmpty(_path: string): boolean {
+  try {
+    const files = fs.readdirSync(_path);
+    return files.length === 0;
+  } catch (_) {
+    return false;
+  }
+}
+
+/**
+ * Return whether or not the provided directory has a node_modules directory
+ */
+export function hasNodeModules(_path: string): boolean {
+  try {
+    const nodeModulesPath = path.join(_path, 'node_modules');
+    return fs.existsSync(nodeModulesPath);
+  } catch (_) {
+    return false;
+  }
+}
+
+export function getProject(_path: string): Project {
+  const scene = getScene(_path);
+  const parcels = scene.scene.parcels.map(($) => parseCoords($));
+
+  return {
+    path: _path,
+    title: scene.display?.title || 'Testing',
+    description: scene.display?.description || 'Some description',
+    thumbnail: scene.display?.navmapThumbnail,
+    isPublic: true,
+    createdAt: new Date().toDateString(),
+    updatedAt: new Date().toDateString(),
+    layout: getRowsAndCols(parcels),
+    isTemplate: false,
+    video: null,
+    templateStatus: null,
   };
 }
 
 /**
- * Returns whether or not the current working directory is a decentraland project or not
+ * Returns all decentraland projects in the provided directory
  */
-export function isDCL() {
-  try {
-    getScene();
-    return hasDependency('@dcl/sdk');
-  } catch (error) {
-    return false;
+export function getProjects(_path: string): Project[] {
+  const scenes: Project[] = [];
+
+  for (const dir of fs.readdirSync(_path)) {
+    try {
+      if (hasDependency(dir, '@dcl/sdk')) {
+        scenes.push(getProject(dir));
+      }
+      // eslint-disable-next-line no-empty
+    } catch (_) {}
   }
+
+  return scenes;
 }
 
 /**
- * Returns whether or not the workspace's current working directory is empty or not
+ * Returns workspace info
  */
-export function isEmpty() {
-  try {
-    const files = fs.readdirSync(getCwd());
-    return files.length === 0;
-  } catch (error) {
-    return false;
-  }
-}
-
-/**
- * Return whether or not the workspace's current working directory has a node_modules directory
- */
-export function hasNodeModules() {
-  try {
-    const nodeModulesPath = path.join(getCwd(), 'node_modules');
-    if (fs.existsSync(nodeModulesPath)) {
-      return true;
-    }
-    return false;
-  } catch (error) {
-    return false;
-  }
+export function getWorkspace(cwd = getCwd()): Workspace {
+  return {
+    projects: getProjects(cwd),
+  };
 }

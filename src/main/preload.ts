@@ -1,5 +1,5 @@
 import { contextBridge } from 'electron';
-import { initRendererApi } from './ipc/preload';
+import { initRendererApi } from './ipc/api';
 
 initRendererApi();
 

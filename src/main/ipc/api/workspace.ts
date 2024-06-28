@@ -1,8 +1,8 @@
 import { ipcRenderer } from 'electron';
 
 import { MessageType } from '../../../shared/enums';
-import { initWorkspace } from '../workspace';
-import { IpcHandlers } from './types';
+import { initWorkspace } from '../handlers/workspace';
+import { IpcHandlers } from '../types';
 
 export function initWorkspaceApi() {
   const workspaceApi: IpcHandlers<ReturnType<typeof initWorkspace>> = {
@@ -10,5 +10,6 @@ export function initWorkspaceApi() {
       return ipcRenderer.invoke(MessageType.GET_WORKSPACE, ...params);
     },
   };
+
   return workspaceApi;
 }
