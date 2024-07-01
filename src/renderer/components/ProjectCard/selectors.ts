@@ -1,4 +1,4 @@
-import { Project } from '../../../shared/projects';
+import { Project } from '../../../shared/types/projects';
 import { RootState } from '../../modules/common/types';
 import { DeploymentStatus } from '../../modules/deployment';
 import { PreviewType } from '../../modules/editor';

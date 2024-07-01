@@ -2,7 +2,7 @@ import fs from 'fs';
 import path from 'path';
 import { Scene } from '@dcl/schemas';
 
-import { Project } from '../../shared/projects';
+import { Project } from '../../shared/types/projects';
 import { hasDependency } from './pkg';
 import { getCwd } from './cwd';
 import { getRowsAndCols, parseCoords } from './scene';

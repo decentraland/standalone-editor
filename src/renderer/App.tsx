@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { Provider } from 'react-redux';
 import { MemoryRouter as Router, Routes, Route } from 'react-router-dom';
 
-import { Project } from '../shared/projects';
+import { Project } from '../shared/types/projects';
 import { store } from './modules/common/store';
 import { TranslationProvider } from './dapps-v2/TranslationProvider';
 import { fetchTranslations } from './modules/translation';

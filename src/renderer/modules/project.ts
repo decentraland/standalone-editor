@@ -1,4 +1,4 @@
-import { Project } from '../../shared/projects';
+import { Project } from '../../shared/types/projects';
 
 import { Media } from './media';
 import { Scene } from './scene';

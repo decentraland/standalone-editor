@@ -1,17 +1,24 @@
 import { ipcMain, IpcMainInvokeEvent } from 'electron';
 
-import { Tail as IgnoreEvent } from '../../shared/types';
-import { IpcHandlerType, MessageType } from '../../shared/enums';
+import { Tail as IgnoreEvent } from '../../shared/types/utils';
 
 // Main
+export type IpcHandlerType = 'INVOKE';
+
+export enum MessageType {
+  GET_WORKSPACE = 'get_workspace',
+}
+
 export type HandlerFn<P extends any[], K> = (
   e: IpcMainInvokeEvent,
   ...args: P
 ) => K;
+
 export type Handler<T extends IpcHandlerType, P extends any[], K> = {
   type: T;
   handler: HandlerFn<P, K>;
 };
+
 export type InvokeHandler<P extends any[], K> = Handler<'INVOKE', P, K>;
 
 export function handleInvoke<T extends MessageType, P extends any[], K>(
