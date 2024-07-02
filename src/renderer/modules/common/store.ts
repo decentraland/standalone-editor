@@ -6,7 +6,6 @@ import {
 } from 'react-redux';
 
 import { createRootReducer } from './reducer';
-import { RootState } from './types';
 
 // check: https://redux.js.org/usage/migrating-to-modern-redux#store-setup-with-configurestore
 // for more info in the future...
@@ -22,6 +21,7 @@ if (isDevelopment) {
   _window.getState = store.getState;
 }
 
+export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;
 export const useDispatch: () => AppDispatch = formerUseDispuseDispatch;
 export const useSelector: TypedUseSelectorHook<RootState> = formerUseSelector;

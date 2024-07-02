@@ -54,7 +54,7 @@ export function createTranslationSlice({
 }: {
   fetchTranslations: ReturnType<typeof createTranslationFetcher>;
 }) {
-  const { actions, reducer } = createSlice({
+  const { actions, reducer, selectors } = createSlice({
     name: 'translation',
     initialState: INITIAL_STATE,
     reducers: {
@@ -80,5 +80,5 @@ export function createTranslationSlice({
     },
   });
 
-  return { reducer, actions: { ...actions, fetchTranslations } };
+  return { actions: { ...actions, fetchTranslations }, reducer, selectors };
 }

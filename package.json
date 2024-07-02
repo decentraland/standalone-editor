@@ -205,8 +205,8 @@
     ],
     "publish": {
       "provider": "github",
-      "owner": "dcl",
-      "repo": "dcl"
+      "owner": "decentraland",
+      "repo": "standalone-editor"
     }
   },
   "devEngines": {

@@ -8,6 +8,6 @@ export const fetchTranslations = createTranslationFetcher({
   translations: languages as any,
 });
 
-export const { reducer, actions } = createTranslationSlice({
+export const { actions, reducer, selectors } = createTranslationSlice({
   fetchTranslations,
 });
