@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import { Props } from './types';
 import { I18nProvider } from '../translation/utils';
 import { selectTranslations } from '../translation/selectors';
-import { useDispatch, useSelector } from '../../modules/common/store';
+import { useDispatch, useSelector } from '../../modules/store';
 import { Locale } from '../translation/types';
 
 export function TranslationProvider({

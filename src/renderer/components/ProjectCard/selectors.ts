@@ -1,5 +1,5 @@
 import { Project } from '../../../shared/types/projects';
-import { RootState } from '../../modules/common/types';
+import { RootState } from '../../modules/store/types';
 import { DeploymentStatus } from '../../modules/deployment';
 import { PreviewType } from '../../modules/editor';
 import { Scene } from '../../modules/scene';

@@ -5,7 +5,7 @@ import {
   useDispatch as formerUseDispuseDispatch,
 } from 'react-redux';
 
-import { createRootReducer } from './reducer';
+import { createRootReducer } from './reducers';
 
 // check: https://redux.js.org/usage/migrating-to-modern-redux#store-setup-with-configurestore
 // for more info in the future...

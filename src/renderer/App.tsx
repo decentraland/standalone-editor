@@ -1,12 +1,12 @@
-import { useEffect, useState } from 'react';
-import { Provider } from 'react-redux';
+import { useEffect } from 'react';
+import { Provider as StoreProvider } from 'react-redux';
 import { MemoryRouter as Router, Routes, Route } from 'react-router-dom';
 
-import { Project } from '../shared/types/projects';
-import { store } from './modules/common/store';
+import { store, useDispatch, useSelector } from './modules/store';
 import { TranslationProvider } from './dapps-v2/TranslationProvider';
-import { fetchTranslations } from './modules/translation';
-import { locales } from './modules/translation/utils';
+import { fetchTranslations } from './modules/store/reducers/translation';
+import { locales } from './modules/store/reducers/translation/utils';
+import { getWorkspace } from './modules/store/reducers/workspace/thunks';
 
 import { ScenesPage } from './components/ScenesPage';
 import { SortBy } from './components/ScenesPage/types';
@@ -16,22 +16,17 @@ import './themes';
 const noop = () => undefined;
 
 function Root() {
-  const [projects, setProjects] = useState<Project[]>([]);
+  const dispatch = useDispatch();
+  const workspace = useSelector((state) => state.workspace);
+
   useEffect(() => {
-    window.api.workspace
-      .getWorkspace()
-      .then((workspace) => {
-        console.log('Testing ipc: ', workspace);
-        setProjects(workspace.projects);
-        return 1;
-      })
-      .catch(() => {});
+    dispatch(getWorkspace());
   }, []);
 
   return (
     <div className="CardList">
       <ScenesPage
-        projects={projects}
+        projects={workspace.projects}
         sortBy={SortBy.NEWEST}
         onOpenModal={noop}
         onSort={noop}
@@ -42,7 +37,7 @@ function Root() {
 
 export function App() {
   return (
-    <Provider store={store}>
+    <StoreProvider store={store}>
       <TranslationProvider
         locales={locales}
         fetchTranslations={fetchTranslations}
@@ -53,6 +48,6 @@ export function App() {
           </Routes>
         </Router>
       </TranslationProvider>
-    </Provider>
+    </StoreProvider>
   );
 }
