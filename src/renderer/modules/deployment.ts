@@ -1,4 +1,4 @@
-import { Layout } from './project';
+import { Layout } from '../../shared/types/projects';
 
 export type Coordinate = { x: number; y: number };
 

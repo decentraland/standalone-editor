@@ -57,22 +57,28 @@ export function hasNodeModules(_path: string): boolean {
 }
 
 export function getProject(_path: string): Project {
-  const scene = getScene(_path);
-  const parcels = scene.scene.parcels.map(($) => parseCoords($));
+  try {
+    const scene = getScene(_path);
+    const parcels = scene.scene.parcels.map(($) => parseCoords($));
 
-  return {
-    path: _path,
-    title: scene.display?.title,
-    description: scene.display?.description,
-    thumbnail: scene.display?.navmapThumbnail,
-    isPublic: true,
-    createdAt: new Date().toDateString(),
-    updatedAt: new Date().toDateString(),
-    layout: getRowsAndCols(parcels),
-    isTemplate: false,
-    video: null,
-    templateStatus: null,
-  };
+    return {
+      path: _path,
+      title: scene.display?.title,
+      description: scene.display?.description,
+      thumbnail: scene.display?.navmapThumbnail,
+      isPublic: true,
+      createdAt: new Date().toDateString(),
+      updatedAt: new Date().toDateString(),
+      layout: getRowsAndCols(parcels),
+      isTemplate: false,
+      video: null,
+      templateStatus: null,
+    };
+  } catch (error: any) {
+    throw new Error(
+      `Could not get scene.json info for project in "${_path}": ${error.message}`,
+    );
+  }
 }
 
 /**
