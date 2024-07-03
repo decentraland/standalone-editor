@@ -95,7 +95,7 @@ export function ScenesPage({ projects, sortBy, onOpenModal, onSort }: Props) {
         <div className="CardList">
           {projects.map((project) => (
             <ProjectCard
-              key={project.id}
+              key={project.path}
               project={project}
               onDeleteProject={noop}
               onDuplicateProject={noop}

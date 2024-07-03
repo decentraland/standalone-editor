@@ -1,5 +1,5 @@
+import { Project } from '../../../shared/types/projects';
 import { PreviewType } from '../../modules/editor';
-import { Project } from '../../modules/project';
 
 export type Props = {
   project: Project;

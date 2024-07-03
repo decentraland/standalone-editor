@@ -1,4 +1,4 @@
-import { Project } from '../../modules/project';
+import { Project } from '../../../shared/types/projects';
 
 export enum SortBy {
   NEWEST = 'newest',

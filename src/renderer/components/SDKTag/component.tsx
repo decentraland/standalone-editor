@@ -1,4 +1,5 @@
 import { Loader } from 'decentraland-ui';
+
 import { Props } from './types';
 
 import './styles.css';

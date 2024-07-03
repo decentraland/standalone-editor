@@ -44,7 +44,7 @@ export function getRowsAndCols(parcels: Coords[]): {
   });
 
   return {
-    rows: Math.abs(limits.max.x) - Math.abs(limits.min.x),
-    cols: Math.abs(limits.max.y) - Math.abs(limits.min.y),
+    rows: Math.abs(limits.max.x) - Math.abs(limits.min.x) + 1,
+    cols: Math.abs(limits.max.y) - Math.abs(limits.min.y) + 1,
   };
 }

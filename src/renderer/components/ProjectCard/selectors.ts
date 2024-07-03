@@ -1,8 +1,8 @@
-import { Project } from '../../../shared/types/projects';
-import { RootState } from '../../modules/store/types';
+import { RootState } from '../../modules/store';
 import { DeploymentStatus } from '../../modules/deployment';
 import { PreviewType } from '../../modules/editor';
 import { Scene } from '../../modules/scene';
+import { Project } from '../../../shared/types/projects';
 
 export function selectCard(_: RootState, project: Project) {
   const parcels = project.layout.cols * project.layout.rows;

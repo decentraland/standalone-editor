@@ -62,8 +62,8 @@ export function getProject(_path: string): Project {
 
   return {
     path: _path,
-    title: scene.display?.title || 'Testing',
-    description: scene.display?.description || 'Some description',
+    title: scene.display?.title,
+    description: scene.display?.description,
     thumbnail: scene.display?.navmapThumbnail,
     isPublic: true,
     createdAt: new Date().toDateString(),
@@ -83,8 +83,9 @@ export function getProjects(_path: string): Project[] {
 
   for (const dir of fs.readdirSync(_path)) {
     try {
-      if (hasDependency(dir, '@dcl/sdk')) {
-        scenes.push(getProject(dir));
+      const projectDir = path.join(_path, dir);
+      if (hasDependency(projectDir, '@dcl/sdk')) {
+        scenes.push(getProject(projectDir));
       }
       // eslint-disable-next-line no-empty
     } catch (_) {}

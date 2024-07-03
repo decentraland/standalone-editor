@@ -92,7 +92,7 @@ export function ProjectCard({
       <div className="project-thumbnail" style={style} />
       <>
         <DeploymentStatus
-          projectId={project.id}
+          projectId={project.path}
           className="deployment-status"
         />
         <div className="options-container">

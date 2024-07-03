@@ -1,10 +1,11 @@
 import classNames from 'classnames';
 import { Badge } from 'decentraland-ui';
-import { t } from '../../dapps-v2/translation/utils';
 
 import { DeploymentStatus as Status } from '../../modules/deployment';
+import { t } from '../../dapps-v2/translation/utils';
 
 import { Props } from './types';
+
 import './styles.css';
 
 export function DeploymentStatus(props: Props) {
